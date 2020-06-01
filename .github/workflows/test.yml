@@ -1,0 +1,44 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node_modules
+        with:
+          path: node_modules
+          key: ${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            nanaco-gift-ar-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+            nanaco-gift-ar-${{ env.cache-name }}-
+            nanaco-gift-ar-
+
+      - run: yarn install
+
+      - run: yarn run lint
+
+      - name: Slack Notification
+        uses: homoluctus/slatify@v1.5
+        if: always()
+        with:
+          job_name: '*${{ github.workflow }}*'
+          type: ${{ job.status }}
+          icon_emoji: ":octocat:"
+          url: ${{ secrets.SLACK_WEBHOOK }}

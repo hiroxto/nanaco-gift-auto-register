@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "baseUrl": "./src/register",
+    "esModuleInterop": true,
+    "paths": {
+      "~/*": ["*"]
+    },
+    "types": [
+      "@types/node",
+      "@types/puppeteer"
+    ]
+  }
+}

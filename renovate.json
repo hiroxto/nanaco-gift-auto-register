@@ -1,30 +1,5 @@
 {
   "extends": [
-    "config:base"
-  ],
-  "timezone": "Asia/Tokyo",
-  "npm": {
-    "enabled": true,
-    "schedule": [
-      "on saturday"
-    ],
-    "patch": {
-      "automerge": true
-    }
-  },
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true,
-    "schedule": [
-      "before 6am on the 1st day of the month"
-    ]
-  },
-  "pin": {
-    "enabled": true,
-    "automerge": true,
-    "schedule": [
-      "every weekday",
-      "every weekend"
-    ]
-  }
+    "github>hiroxto/renovate-config"
+  ]
 }

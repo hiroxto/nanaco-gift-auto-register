@@ -1,4 +1,4 @@
-import { launch } from 'puppeteer';
+import puppeteer from 'puppeteer';
 
 require('dotenv').config();
 
@@ -22,11 +22,11 @@ const main = async () => {
   }
 
   const giftIds = getNanacoGiftIds(process.argv);
+  const browser = await puppeteer.launch();
   giftIds.map(async giftId => {
     const firstURL = buildLoginUrl(giftId);
     console.log(`Register ${giftId}`);
     console.log(firstURL);
-    const browser = await launch();
     const page = await browser.newPage();
 
     // ログイン処理.

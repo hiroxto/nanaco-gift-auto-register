@@ -83,7 +83,7 @@ const main = async () => {
     if (isErrorPage) {
       await page.screenshot({ path: `screenshot/error-${giftId}.png`, fullPage: true });
       console.error(`ギフト ID ${giftId} は既に登録されています.`);
-      await browser.close();
+      await page.close();
     } else {
       await page.screenshot({ path: `screenshot/${giftId}-04.png`, fullPage: true });
       console.log(`ギフト ID ${giftId} を登録.`);
@@ -97,7 +97,7 @@ const main = async () => {
       await page.screenshot({ path: `screenshot/${giftId}-05.png`, fullPage: true });
       console.log('登録完了');
 
-      await browser.close();
+      await page.close();
     }
   });
 };

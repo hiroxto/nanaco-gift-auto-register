@@ -1,10 +1,15 @@
-import puppeteer from 'puppeteer';
+import puppeteer, { NavigationOptions } from 'puppeteer';
 
 require('dotenv').config();
 
 const loginUrl = 'https://www.nanaco-net.jp/pc/emServlet';
 const NANACO_NUMBER = process.env.NANACO_NUMBER;
 const NANACO_SECURITY_CODE = process.env.NANACO_SECURITY_CODE;
+
+// ページ移動時に使うオプション
+const navigationOptions: NavigationOptions = {
+  waitUntil: ['load', 'networkidle2'],
+};
 
 const buildLoginUrl = (giftCode: string) : string => `${loginUrl}?gid=${giftCode}`;
 const getNanacoGiftIds = (args: string[]) : string[] => {
@@ -41,7 +46,7 @@ const main = async () => {
     // await page.screenshot({ path: 'screenshot/00.png', fullPage: true });
     console.log('Click login');
     await Promise.all([
-      page.waitForNavigation({ waitUntil: ['load', 'networkidle2'] }),
+      page.waitForNavigation(navigationOptions),
       page.click('input[name="ACT_ACBS_do_LOGIN2"]'),
     ]);
 
@@ -49,7 +54,7 @@ const main = async () => {
     // await page.screenshot({ path: 'screenshot/01.png', fullPage: true });
     console.log('Click gift register menu');
     await Promise.all([
-      page.waitForNavigation({ waitUntil: ['load', 'networkidle2'] }),
+      page.waitForNavigation(navigationOptions),
       page.click('#memberNavi02'),
     ]);
 
@@ -63,7 +68,7 @@ const main = async () => {
     // await page.screenshot({ path: 'screenshot/02.png', fullPage: true });
     console.log('Click register button');
     await Promise.all([
-      page.waitForNavigation({ waitUntil: ['load', 'networkidle2'] }),
+      page.waitForNavigation(navigationOptions),
       page.click('input[type="image"]'),
     ]);
 
@@ -73,7 +78,7 @@ const main = async () => {
     // await page.screenshot({ path: 'screenshot/03.png', fullPage: true });
     console.log('On sub window. Click register button.');
     await Promise.all([
-      page.waitForNavigation({ waitUntil: ['load', 'networkidle2'] }),
+      page.waitForNavigation(navigationOptions),
       page.click('#submit-button'),
     ]);
 
@@ -90,7 +95,7 @@ const main = async () => {
 
       // 登録ボタンをクリック
       await Promise.all([
-        page.waitForNavigation({ waitUntil: ['load', 'networkidle2'] }),
+        page.waitForNavigation(navigationOptions),
         page.click('input[alt="登録する"]'),
       ]);
 

@@ -27,8 +27,8 @@ const main = async () => {
   }
 
   const giftIds = getNanacoGiftIds(process.argv);
-  const browser = await puppeteer.launch();
   await Promise.all(giftIds.map(async giftId => {
+    const browser = await puppeteer.launch();
     const firstURL = buildLoginUrl(giftId);
     console.log(`Register ${giftId}`);
     console.log(firstURL);
@@ -94,6 +94,7 @@ const main = async () => {
       await page.screenshot({ path: `screenshot/error-${giftId}.png`, fullPage: true });
       console.error(`ギフト ID ${giftId} は既に登録されています.`);
       await page.close();
+      await browser.close();
     } else {
       await page.screenshot({ path: `screenshot/${giftId}-04.png`, fullPage: true });
       console.log(`ギフト ID ${giftId} を登録.`);
@@ -107,11 +108,10 @@ const main = async () => {
 
       await page.screenshot({ path: `screenshot/${giftId}-05.png`, fullPage: true });
       console.log('登録完了');
-
       await page.close();
+      await browser.close();
     }
   }));
-  await browser.close();
 };
 
 console.log(main());

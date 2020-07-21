@@ -28,7 +28,7 @@ const main = async () => {
 
   const giftIds = getNanacoGiftIds(process.argv);
   const browser = await puppeteer.launch();
-  giftIds.map(async giftId => {
+  await Promise.all(giftIds.map(async giftId => {
     const firstURL = buildLoginUrl(giftId);
     console.log(`Register ${giftId}`);
     console.log(firstURL);
@@ -104,7 +104,8 @@ const main = async () => {
 
       await page.close();
     }
-  });
+  }));
+  await browser.close();
 };
 
 console.log(main());

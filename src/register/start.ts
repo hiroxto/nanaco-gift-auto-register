@@ -41,7 +41,7 @@ const main = async () => {
     // ログイン処理.
     // ログインページを開いて, nanaco カード番号とセキュリティコードを入力
     console.log(`Go to ${firstURL}`);
-    await page.goto(firstURL, { waitUntil: 'networkidle0' });
+    await page.goto(firstURL, navigationOptions);
 
     console.log('Type nanaco number');
     await page.waitForSelector('input[name="XCID"]', waitForSelectorOptions)

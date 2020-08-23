@@ -94,7 +94,6 @@ const main = async () => {
     // 既に登録済みのギフト ID の場合, 別ページに飛ばされる
     // #error500 の有無を確認して, #error500 が存在した場合は終了する.
     const isErrorPage = await page.$('#error500').then(el => !!el);
-    await page.screenshot({ path: `screenshot/submit-${giftId}.png`, fullPage: true });
     if (isErrorPage) {
       await page.screenshot({ path: `screenshot/error-${giftId}.png`, fullPage: true });
       console.error(`ギフト ID ${giftId} は既に登録されています.`);

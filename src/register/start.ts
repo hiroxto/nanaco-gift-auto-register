@@ -101,7 +101,7 @@ const main = async () => {
       await page.close();
       await browser.close();
     } else {
-      await page.screenshot({ path: `screenshot/${giftId}-04.png`, fullPage: true });
+      await page.screenshot({ path: `screenshot/success00-${giftId}.png`, fullPage: true });
       console.log(`ギフト ID ${giftId} を登録.`);
 
       // 登録ボタンをクリック
@@ -111,7 +111,7 @@ const main = async () => {
           .then(el => el.click()),
       ]);
 
-      await page.screenshot({ path: `screenshot/${giftId}-05.png`, fullPage: true });
+      await page.screenshot({ path: `screenshot/success01-${giftId}.png`, fullPage: true });
       console.log('登録完了');
       await page.close();
       await browser.close();

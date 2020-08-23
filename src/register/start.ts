@@ -16,12 +16,12 @@ const waitForSelectorOptions: WaitForSelectorOptions = {
 };
 
 const buildLoginUrl = (giftCode: string) : string => `${loginUrl}?gid=${giftCode}`;
-const getNanacoGiftIds = (args: string[]) : string[] => {
-  const realArgs = args.slice(2);
-  const giftCodes = realArgs[0];
 
-  return giftCodes.split(',').map(c => c.trim()).filter(c => c.length !== 0);
-};
+/**
+ * コマンドの引数からnanacoギフトを取り出す
+ * @param processArgs process.argsの値
+ */
+const getNanacoGiftIDs = (processArgs: string[]) : string[] => processArgs.slice(2);
 
 /**
  * nanaco ギフトを登録する
@@ -120,8 +120,8 @@ const main = async () => {
     process.exit(1);
   }
 
-  const giftIds = getNanacoGiftIds(process.argv);
-  await Promise.all(giftIds.map(async giftId => await registerNanacoGift(giftId)));
+  const giftIDs = getNanacoGiftIDs(process.argv);
+  await Promise.all(giftIDs.map(async giftId => await registerNanacoGift(giftId)));
 };
 
 console.log(main());

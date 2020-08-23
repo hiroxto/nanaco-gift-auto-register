@@ -51,7 +51,6 @@ const main = async () => {
       .then(el => el.type(NANACO_SECURITY_CODE));
 
     // ログイン をクリック
-    // await page.screenshot({ path: 'screenshot/00.png', fullPage: true });
     console.log('Click login');
     await Promise.all([
       page.waitForNavigation(navigationOptions),
@@ -60,7 +59,6 @@ const main = async () => {
     ]);
 
     // nanaco ギフト登録 をクリック
-    // await page.screenshot({ path: 'screenshot/01.png', fullPage: true });
     console.log('Click gift register menu');
     await Promise.all([
       page.waitForNavigation(navigationOptions),
@@ -76,7 +74,6 @@ const main = async () => {
 
     // 登録ボタン をクリック
     // 強制的に同じページで開かれるため, ウィンドウの移動は不要
-    // await page.screenshot({ path: 'screenshot/02.png', fullPage: true });
     console.log('Click register button');
     await Promise.all([
       page.waitForNavigation(navigationOptions),
@@ -87,7 +84,6 @@ const main = async () => {
     // ギフト ID 登録フォーム
     // ログイン時に gid を指定したためギフト ID は既に入力されている.
     // 登録ページの登録ボタンをクリック.
-    // await page.screenshot({ path: 'screenshot/03.png', fullPage: true });
     console.log('On sub window. Click register button.');
     await Promise.all([
       page.waitForNavigation(navigationOptions),

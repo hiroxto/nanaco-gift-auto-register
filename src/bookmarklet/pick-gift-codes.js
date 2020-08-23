@@ -7,5 +7,5 @@
     .map(nanacoGiftLink => nanacoGiftLink.match(/gid=([a-zA-Z\d]{16})$/)[1]);
 
   console.log(nanacoGiftIds);
-  prompt('yarn run start に渡す', nanacoGiftIds.join(','));
+  prompt('yarn run start に渡す', nanacoGiftIds.join(' '));
 })();

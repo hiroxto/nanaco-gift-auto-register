@@ -77,8 +77,10 @@ const registerNanacoGift = async (giftId: string): Promise<void> => {
   // 登録ボタンのフォームから target と onsubmit を削除. 強制的に同じページで開く.
   console.log('Remove form target and onsubmit');
   await page.waitForSelector('form');
-  await page.$eval('form', el => el.removeAttribute('target'));
-  await page.$eval('form', el => el.removeAttribute('onsubmit'));
+  await page.$eval('form', el => {
+    el.removeAttribute('target');
+    el.removeAttribute('onsubmit');
+  });
 
   // 登録ボタン をクリック
   // 強制的に同じページで開かれるため, ウィンドウの移動は不要

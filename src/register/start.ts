@@ -55,16 +55,17 @@ const main = async () => {
     console.log('Click login');
     await Promise.all([
       page.waitForNavigation(navigationOptions),
-      page.click('input[name="ACT_ACBS_do_LOGIN2"]'),
+      page.waitForSelector('input[name="ACT_ACBS_do_LOGIN2"]', waitForSelectorOptions)
+        .then(el => el.click()),
     ]);
 
     // nanaco ギフト登録 をクリック
     // await page.screenshot({ path: 'screenshot/01.png', fullPage: true });
     console.log('Click gift register menu');
-    await page.waitForSelector('#memberNavi02');
     await Promise.all([
       page.waitForNavigation(navigationOptions),
-      page.click('#memberNavi02'),
+      page.waitForSelector('#memberNavi02', waitForSelectorOptions)
+        .then(el => el.click()),
     ]);
 
     // 登録ボタンのフォームから target と onsubmit を削除. 強制的に同じページで開く.
@@ -77,10 +78,10 @@ const main = async () => {
     // 強制的に同じページで開かれるため, ウィンドウの移動は不要
     // await page.screenshot({ path: 'screenshot/02.png', fullPage: true });
     console.log('Click register button');
-    await page.waitForSelector('input[type="image"]');
     await Promise.all([
       page.waitForNavigation(navigationOptions),
-      page.click('input[type="image"]'),
+      page.waitForSelector('input[type="image"]', waitForSelectorOptions)
+        .then(el => el.click()),
     ]);
 
     // ギフト ID 登録フォーム
@@ -88,10 +89,10 @@ const main = async () => {
     // 登録ページの登録ボタンをクリック.
     // await page.screenshot({ path: 'screenshot/03.png', fullPage: true });
     console.log('On sub window. Click register button.');
-    await page.waitForSelector('#submit-button');
     await Promise.all([
       page.waitForNavigation(navigationOptions),
-      page.click('#submit-button'),
+      page.waitForSelector('#submit-button', waitForSelectorOptions)
+        .then(el => el.click()),
     ]);
 
     // 既に登録済みのギフト ID の場合, 別ページに飛ばされる
@@ -108,10 +109,10 @@ const main = async () => {
       console.log(`ギフト ID ${giftId} を登録.`);
 
       // 登録ボタンをクリック
-      await page.waitForSelector('input[alt="登録する"]');
       await Promise.all([
         page.waitForNavigation(navigationOptions),
-        page.click('input[alt="登録する"]'),
+        page.waitForSelector('input[alt="登録する"]', waitForSelectorOptions)
+          .then(el => el.click()),
       ]);
 
       await page.screenshot({ path: `screenshot/${giftId}-05.png`, fullPage: true });

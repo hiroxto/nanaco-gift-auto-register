@@ -44,7 +44,6 @@ const registerNanacoGift = async (giftId: string): Promise<void> => {
   const browser = await puppeteer.launch();
   const firstURL = buildLoginUrl(giftId);
   console.log(`Register ${giftId}`);
-  console.log(firstURL);
   const page = await browser.newPage();
 
   // ログイン処理.

@@ -38,9 +38,11 @@ const main = async () => {
     // ログインページを開いて, nanaco カード番号とセキュリティコードを入力
     console.log(`Go to ${firstURL}`);
     await page.goto(firstURL, { waitUntil: 'networkidle0' });
-    console.log('Type nanaco number and security code');
-    await page.type('input[name="XCID"]', NANACO_NUMBER);
-    await page.type('input[name="SECURITY_CD"]', NANACO_SECURITY_CODE);
+
+    console.log('Type nanaco number');
+    await page.waitForSelector('input[name="XCID"]').then(el => el.type(NANACO_NUMBER));
+    console.log('Type security code');
+    await page.waitForSelector('input[name="SECURITY_CD"]').then(el => el.type(NANACO_SECURITY_CODE));
 
     // ログイン をクリック
     // await page.screenshot({ path: 'screenshot/00.png', fullPage: true });

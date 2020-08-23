@@ -131,7 +131,11 @@ const main = async () => {
   }
 
   const giftIDs = getNanacoGiftIDs(process.argv);
-  await Promise.all(giftIDs.map(async giftId => await registerNanacoGift(giftId)));
+  const splitGiftIDs = splitIDs(giftIDs, SPLIT_BY);
+  for (let i = 0; i < splitGiftIDs.length; i++) {
+    const ids = splitGiftIDs[i];
+    await Promise.all(ids.map(async id => await registerNanacoGift(id)));
+  }
 };
 
 console.log(main());

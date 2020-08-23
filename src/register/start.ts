@@ -1,4 +1,4 @@
-import puppeteer, { NavigationOptions } from 'puppeteer';
+import puppeteer, { NavigationOptions, WaitForSelectorOptions } from 'puppeteer';
 
 require('dotenv').config();
 
@@ -9,6 +9,10 @@ const NANACO_SECURITY_CODE = process.env.NANACO_SECURITY_CODE;
 // ページ移動時に使うオプション
 const navigationOptions: NavigationOptions = {
   waitUntil: ['load', 'networkidle2'],
+};
+
+const waitForSelectorOptions: WaitForSelectorOptions = {
+  visible: true,
 };
 
 const buildLoginUrl = (giftCode: string) : string => `${loginUrl}?gid=${giftCode}`;

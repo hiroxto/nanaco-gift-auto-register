@@ -24,6 +24,15 @@ const buildLoginUrl = (giftCode: string) : string => `${loginUrl}?gid=${giftCode
 const getNanacoGiftIDs = (processArgs: string[]) : string[] => processArgs.slice(2);
 
 /**
+ * ギフトIDを分割する
+ * @param ids 分割する配列
+ * @param splitBy 分割する個数
+ */
+const splitIDs = (ids: string[], splitBy: number): string[][] => {
+  return ids.reduce((acc, c, i) => i % splitBy ? acc : [...acc, [ids.slice(i, i + splitBy)]], []);
+};
+
+/**
  * nanaco ギフトを登録する
  * @param giftId 登録するギフトID. ハイフンは不要.
  */

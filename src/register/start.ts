@@ -30,7 +30,10 @@ const getNanacoGiftIDs = (processArgs: string[]) : string[] => processArgs.slice
  * @param splitBy 分割する個数
  */
 const splitIDs = (ids: string[], splitBy: number): string[][] => {
-  return ids.reduce((acc, c, i) => i % splitBy ? acc : [...acc, [ids.slice(i, i + splitBy)]], []);
+  const length = Math.ceil(ids.length / splitBy);
+  return new Array(length).fill('').map((_, i) =>
+    ids.slice(i * splitBy, (i + 1) * splitBy),
+  );
 };
 
 /**

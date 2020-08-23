@@ -5,7 +5,7 @@ require('dotenv').config();
 const loginUrl = 'https://www.nanaco-net.jp/pc/emServlet';
 const NANACO_NUMBER = process.env.NANACO_NUMBER;
 const NANACO_SECURITY_CODE = process.env.NANACO_SECURITY_CODE;
-const SPLIT_BY = process.env.SPLIT_BY;
+const SPLIT_BY = +process.env.SPLIT_BY;
 
 // ページ移動時に使うオプション
 const navigationOptions: NavigationOptions = {

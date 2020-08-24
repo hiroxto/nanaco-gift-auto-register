@@ -14,7 +14,7 @@ $ yarn install
 
 ```dotenv
 # nanaco カード裏の番号
-NANACO_NUMBER="0123456789012345"
+NANACO_NUMBER="7600001234567898"
 
 # nanaco カード裏のセキュリティコード
 NANACO_SECURITY_CODE="0123456"

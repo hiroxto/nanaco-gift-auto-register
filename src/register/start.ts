@@ -130,7 +130,6 @@ const registerNanacoGift = async (giftId: string): Promise<void> => {
 const main = async () => {
   if (process.argv.length <= 2) {
     console.error('引数に nanaco ギフト ID が渡されていません.');
-    console.error('nanaco ギフト ID を "," で区切って渡してください.');
     process.exit(1);
   }
 

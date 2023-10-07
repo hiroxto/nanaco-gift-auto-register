@@ -1,6 +1,7 @@
 name: Node CI
 
-on: [push]
+on:
+  pull_request:
 
 jobs:
   test:
@@ -8,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12]
+        node-version: [18]
 
     steps:
       - uses: actions/checkout@v1
@@ -33,12 +34,3 @@ jobs:
       - run: yarn install
 
       - run: yarn run lint
-
-      - name: Slack Notification
-        uses: homoluctus/slatify@v1.5
-        if: always()
-        with:
-          job_name: '*${{ github.workflow }}*'
-          type: ${{ job.status }}
-          icon_emoji: ":octocat:"
-          url: ${{ secrets.SLACK_WEBHOOK }}
